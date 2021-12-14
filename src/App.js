@@ -8,7 +8,9 @@ import redCandy from "./images/red-candy.png";
 import yellowCandy from "./images/yellow-candy.png";
 import blank from "./images/blank.png";
 
-const width = 8;
+const width = 8; ///width of out board
+
+///define candy colors
 const candyColors = [
   blueCandy,
   orangeCandy,
@@ -24,6 +26,7 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
 
+  ///check for matches
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3];
@@ -44,6 +47,7 @@ const App = () => {
       }
     }
   };
+  ///check for matches
 
   const checkForRowOfFour = () => {
     for (let i = 0; i < 64; i++) {
@@ -71,6 +75,7 @@ const App = () => {
       }
     }
   };
+  ///check for matches
 
   const checkForColumnOfThree = () => {
     for (let i = 0; i <= 47; i++) {
@@ -92,6 +97,7 @@ const App = () => {
       }
     }
   };
+  ///check for matches
 
   const checkForRowOfThree = () => {
     for (let i = 0; i < 64; i++) {
@@ -119,6 +125,7 @@ const App = () => {
     }
   };
 
+  ///moving candies down after matches
   const moveIntoSquareBelow = () => {
     for (let i = 0; i <= 55; i++) {
       const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -136,6 +143,7 @@ const App = () => {
     }
   };
 
+  ///drag candies
   const dragStart = (e) => {
     setSquareBeingDragged(e.target);
   };
@@ -187,6 +195,8 @@ const App = () => {
 
   const createBoard = () => {
     const randomColorArrangement = [];
+
+    ///fill board with random candies
     for (let i = 0; i < width * width; i++) {
       const randomColor =
         candyColors[Math.floor(Math.random() * candyColors.length)];
@@ -199,6 +209,7 @@ const App = () => {
     createBoard();
   }, []);
 
+  ///check for matches every 100 ms
   useEffect(() => {
     const timer = setInterval(() => {
       checkForColumnOfFour();
