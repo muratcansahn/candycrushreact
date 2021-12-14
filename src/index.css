@@ -14,3 +14,8 @@
   width: 70px;
   height: 70px;
 }
+.score-board {
+  margin-left: 200px;
+
+  text-align: center;
+}
